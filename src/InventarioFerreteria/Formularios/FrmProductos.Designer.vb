@@ -75,6 +75,7 @@ Partial Class FrmProductos
         ' 
         ' grpDatos
         ' 
+        grpDatos.BackColor = Drawing.SystemColors.ControlLight
         grpDatos.Controls.Add(chkActivo)
         grpDatos.Controls.Add(nudExistencia)
         grpDatos.Controls.Add(nudPrecio)
@@ -243,6 +244,7 @@ Partial Class FrmProductos
         ' 
         ' grpAcciones
         ' 
+        grpAcciones.BackColor = Drawing.SystemColors.ControlLight
         grpAcciones.Controls.Add(btnEliminar)
         grpAcciones.Controls.Add(btnActualizar)
         grpAcciones.Controls.Add(btnAgregar)
@@ -326,7 +328,7 @@ Partial Class FrmProductos
         dgvProductos.AllowUserToDeleteRows = False
         dgvProductos.Anchor = System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right
         dgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        dgvProductos.BackgroundColor = Drawing.SystemColors.ButtonHighlight
+        dgvProductos.BackgroundColor = Drawing.SystemColors.ControlLight
         dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvProductos.Location = New System.Drawing.Point(383, 108)
         dgvProductos.MultiSelect = False
