@@ -54,6 +54,7 @@ Partial Class FrmProductos
         lblTotal = New System.Windows.Forms.ToolStripStatusLabel()
         errValidacion = New System.Windows.Forms.ErrorProvider(components)
         ttAyuda = New System.Windows.Forms.ToolTip(components)
+        chkSoloActivos = New System.Windows.Forms.CheckBox()
         grpDatos.SuspendLayout()
         CType(nudExistencia, ComponentModel.ISupportInitialize).BeginInit()
         CType(nudPrecio, ComponentModel.ISupportInitialize).BeginInit()
@@ -67,9 +68,10 @@ Partial Class FrmProductos
         ' 
         lblTitulo.AutoSize = True
         lblTitulo.Font = New System.Drawing.Font("Segoe UI", 14.25F, Drawing.FontStyle.Bold, Drawing.GraphicsUnit.Point, CByte(0))
-        lblTitulo.Location = New System.Drawing.Point(16, 12)
+        lblTitulo.Location = New System.Drawing.Point(23, 20)
+        lblTitulo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         lblTitulo.Name = "lblTitulo"
-        lblTitulo.Size = New System.Drawing.Size(228, 25)
+        lblTitulo.Size = New System.Drawing.Size(349, 40)
         lblTitulo.TabIndex = 0
         lblTitulo.Text = "Inventario de productos"
         ' 
@@ -91,9 +93,11 @@ Partial Class FrmProductos
         grpDatos.Controls.Add(lblCodigo)
         grpDatos.Controls.Add(lblIdValor)
         grpDatos.Controls.Add(lblId)
-        grpDatos.Location = New System.Drawing.Point(16, 52)
+        grpDatos.Location = New System.Drawing.Point(23, 87)
+        grpDatos.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         grpDatos.Name = "grpDatos"
-        grpDatos.Size = New System.Drawing.Size(340, 306)
+        grpDatos.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        grpDatos.Size = New System.Drawing.Size(486, 510)
         grpDatos.TabIndex = 1
         grpDatos.TabStop = False
         grpDatos.Text = "Datos del producto"
@@ -103,19 +107,21 @@ Partial Class FrmProductos
         chkActivo.AutoSize = True
         chkActivo.Checked = True
         chkActivo.CheckState = System.Windows.Forms.CheckState.Checked
-        chkActivo.Location = New System.Drawing.Point(111, 263)
+        chkActivo.Location = New System.Drawing.Point(159, 438)
+        chkActivo.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         chkActivo.Name = "chkActivo"
-        chkActivo.Size = New System.Drawing.Size(110, 19)
+        chkActivo.Size = New System.Drawing.Size(163, 29)
         chkActivo.TabIndex = 7
         chkActivo.Text = "Producto activo"
         chkActivo.UseVisualStyleBackColor = True
         ' 
         ' nudExistencia
         ' 
-        nudExistencia.Location = New System.Drawing.Point(111, 220)
+        nudExistencia.Location = New System.Drawing.Point(159, 367)
+        nudExistencia.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         nudExistencia.Maximum = New Decimal(New Integer() {100000, 0, 0, 0})
         nudExistencia.Name = "nudExistencia"
-        nudExistencia.Size = New System.Drawing.Size(133, 23)
+        nudExistencia.Size = New System.Drawing.Size(190, 31)
         nudExistencia.TabIndex = 6
         nudExistencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         nudExistencia.ThousandsSeparator = True
@@ -124,10 +130,11 @@ Partial Class FrmProductos
         ' 
         nudPrecio.DecimalPlaces = 2
         nudPrecio.Increment = New Decimal(New Integer() {5, 0, 0, 0})
-        nudPrecio.Location = New System.Drawing.Point(111, 185)
+        nudPrecio.Location = New System.Drawing.Point(159, 308)
+        nudPrecio.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         nudPrecio.Maximum = New Decimal(New Integer() {1000000, 0, 0, 0})
         nudPrecio.Name = "nudPrecio"
-        nudPrecio.Size = New System.Drawing.Size(133, 23)
+        nudPrecio.Size = New System.Drawing.Size(190, 31)
         nudPrecio.TabIndex = 5
         nudPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         nudPrecio.ThousandsSeparator = True
@@ -137,89 +144,99 @@ Partial Class FrmProductos
         cboUnidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         cboUnidad.FormattingEnabled = True
         cboUnidad.Items.AddRange(New Object() {"Unidad", "", "Libra", "", "Galón", "", "Metro", "", "Bolsa", "", "Caja", "", "Rollo"})
-        cboUnidad.Location = New System.Drawing.Point(111, 153)
+        cboUnidad.Location = New System.Drawing.Point(159, 255)
+        cboUnidad.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         cboUnidad.Name = "cboUnidad"
-        cboUnidad.Size = New System.Drawing.Size(200, 23)
+        cboUnidad.Size = New System.Drawing.Size(284, 33)
         cboUnidad.TabIndex = 4
         ' 
         ' cboCategoria
         ' 
         cboCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         cboCategoria.FormattingEnabled = True
-        cboCategoria.Location = New System.Drawing.Point(111, 124)
+        cboCategoria.Location = New System.Drawing.Point(159, 207)
+        cboCategoria.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         cboCategoria.Name = "cboCategoria"
-        cboCategoria.Size = New System.Drawing.Size(200, 23)
+        cboCategoria.Size = New System.Drawing.Size(284, 33)
         cboCategoria.TabIndex = 3
         ' 
         ' txtNombre
         ' 
         txtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        txtNombre.Location = New System.Drawing.Point(111, 95)
+        txtNombre.Location = New System.Drawing.Point(159, 158)
+        txtNombre.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         txtNombre.MaxLength = 100
         txtNombre.Name = "txtNombre"
-        txtNombre.Size = New System.Drawing.Size(200, 23)
+        txtNombre.Size = New System.Drawing.Size(284, 31)
         txtNombre.TabIndex = 2
         ' 
         ' txtCodigo
         ' 
         txtCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        txtCodigo.Location = New System.Drawing.Point(111, 66)
+        txtCodigo.Location = New System.Drawing.Point(159, 110)
+        txtCodigo.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         txtCodigo.MaxLength = 15
         txtCodigo.Name = "txtCodigo"
-        txtCodigo.Size = New System.Drawing.Size(200, 23)
+        txtCodigo.Size = New System.Drawing.Size(284, 31)
         txtCodigo.TabIndex = 1
         ' 
         ' lblExistencia
         ' 
         lblExistencia.AutoSize = True
-        lblExistencia.Location = New System.Drawing.Point(36, 222)
+        lblExistencia.Location = New System.Drawing.Point(51, 370)
+        lblExistencia.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         lblExistencia.Name = "lblExistencia"
-        lblExistencia.Size = New System.Drawing.Size(61, 15)
+        lblExistencia.Size = New System.Drawing.Size(91, 25)
         lblExistencia.TabIndex = 9
         lblExistencia.Text = "Existencia:"
         ' 
         ' lblPrecio
         ' 
         lblPrecio.AutoSize = True
-        lblPrecio.Location = New System.Drawing.Point(36, 187)
+        lblPrecio.Location = New System.Drawing.Point(51, 312)
+        lblPrecio.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         lblPrecio.Name = "lblPrecio"
-        lblPrecio.Size = New System.Drawing.Size(68, 15)
+        lblPrecio.Size = New System.Drawing.Size(100, 25)
         lblPrecio.TabIndex = 8
         lblPrecio.Text = "Precio (C$):"
         ' 
         ' lblUnidad
         ' 
         lblUnidad.AutoSize = True
-        lblUnidad.Location = New System.Drawing.Point(36, 156)
+        lblUnidad.Location = New System.Drawing.Point(51, 260)
+        lblUnidad.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         lblUnidad.Name = "lblUnidad"
-        lblUnidad.Size = New System.Drawing.Size(48, 15)
+        lblUnidad.Size = New System.Drawing.Size(73, 25)
         lblUnidad.TabIndex = 7
         lblUnidad.Text = "Unidad:"
         ' 
         ' lblCategoria
         ' 
         lblCategoria.AutoSize = True
-        lblCategoria.Location = New System.Drawing.Point(36, 127)
+        lblCategoria.Location = New System.Drawing.Point(51, 212)
+        lblCategoria.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         lblCategoria.Name = "lblCategoria"
-        lblCategoria.Size = New System.Drawing.Size(61, 15)
+        lblCategoria.Size = New System.Drawing.Size(92, 25)
         lblCategoria.TabIndex = 6
         lblCategoria.Text = "Categoría:"
         ' 
         ' lblNombre
         ' 
         lblNombre.AutoSize = True
-        lblNombre.Location = New System.Drawing.Point(36, 98)
+        lblNombre.Location = New System.Drawing.Point(51, 163)
+        lblNombre.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         lblNombre.Name = "lblNombre"
-        lblNombre.Size = New System.Drawing.Size(54, 15)
+        lblNombre.Size = New System.Drawing.Size(82, 25)
         lblNombre.TabIndex = 5
         lblNombre.Text = "Nombre:"
         ' 
         ' lblCodigo
         ' 
         lblCodigo.AutoSize = True
-        lblCodigo.Location = New System.Drawing.Point(36, 69)
+        lblCodigo.Location = New System.Drawing.Point(51, 115)
+        lblCodigo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         lblCodigo.Name = "lblCodigo"
-        lblCodigo.Size = New System.Drawing.Size(49, 15)
+        lblCodigo.Size = New System.Drawing.Size(75, 25)
         lblCodigo.TabIndex = 4
         lblCodigo.Text = "Código:"
         ' 
@@ -227,18 +244,20 @@ Partial Class FrmProductos
         ' 
         lblIdValor.AutoSize = True
         lblIdValor.Font = New System.Drawing.Font("Segoe UI", 9F, Drawing.FontStyle.Bold)
-        lblIdValor.Location = New System.Drawing.Point(111, 32)
+        lblIdValor.Location = New System.Drawing.Point(159, 53)
+        lblIdValor.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         lblIdValor.Name = "lblIdValor"
-        lblIdValor.Size = New System.Drawing.Size(50, 15)
+        lblIdValor.Size = New System.Drawing.Size(79, 25)
         lblIdValor.TabIndex = 3
         lblIdValor.Text = "(nuevo)"
         ' 
         ' lblId
         ' 
         lblId.AutoSize = True
-        lblId.Location = New System.Drawing.Point(36, 32)
+        lblId.Location = New System.Drawing.Point(51, 53)
+        lblId.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         lblId.Name = "lblId"
-        lblId.Size = New System.Drawing.Size(21, 15)
+        lblId.Size = New System.Drawing.Size(34, 25)
         lblId.TabIndex = 2
         lblId.Text = "ID:"
         ' 
@@ -249,9 +268,11 @@ Partial Class FrmProductos
         grpAcciones.Controls.Add(btnActualizar)
         grpAcciones.Controls.Add(btnAgregar)
         grpAcciones.Controls.Add(btnNuevo)
-        grpAcciones.Location = New System.Drawing.Point(16, 368)
+        grpAcciones.Location = New System.Drawing.Point(23, 613)
+        grpAcciones.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         grpAcciones.Name = "grpAcciones"
-        grpAcciones.Size = New System.Drawing.Size(340, 124)
+        grpAcciones.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        grpAcciones.Size = New System.Drawing.Size(486, 207)
         grpAcciones.TabIndex = 2
         grpAcciones.TabStop = False
         grpAcciones.Text = "Operaciones"
@@ -259,9 +280,10 @@ Partial Class FrmProductos
         ' btnEliminar
         ' 
         btnEliminar.Enabled = False
-        btnEliminar.Location = New System.Drawing.Point(176, 73)
+        btnEliminar.Location = New System.Drawing.Point(251, 122)
+        btnEliminar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         btnEliminar.Name = "btnEliminar"
-        btnEliminar.Size = New System.Drawing.Size(148, 36)
+        btnEliminar.Size = New System.Drawing.Size(211, 60)
         btnEliminar.TabIndex = 5
         btnEliminar.Text = "&Eliminar"
         btnEliminar.UseVisualStyleBackColor = True
@@ -269,27 +291,30 @@ Partial Class FrmProductos
         ' btnActualizar
         ' 
         btnActualizar.Enabled = False
-        btnActualizar.Location = New System.Drawing.Point(22, 73)
+        btnActualizar.Location = New System.Drawing.Point(31, 122)
+        btnActualizar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         btnActualizar.Name = "btnActualizar"
-        btnActualizar.Size = New System.Drawing.Size(148, 36)
+        btnActualizar.Size = New System.Drawing.Size(211, 60)
         btnActualizar.TabIndex = 3
         btnActualizar.Text = "A&ctualizar"
         btnActualizar.UseVisualStyleBackColor = True
         ' 
         ' btnAgregar
         ' 
-        btnAgregar.Location = New System.Drawing.Point(176, 31)
+        btnAgregar.Location = New System.Drawing.Point(251, 52)
+        btnAgregar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         btnAgregar.Name = "btnAgregar"
-        btnAgregar.Size = New System.Drawing.Size(148, 36)
+        btnAgregar.Size = New System.Drawing.Size(211, 60)
         btnAgregar.TabIndex = 4
         btnAgregar.Text = "&Agregar"
         btnAgregar.UseVisualStyleBackColor = True
         ' 
         ' btnNuevo
         ' 
-        btnNuevo.Location = New System.Drawing.Point(22, 31)
+        btnNuevo.Location = New System.Drawing.Point(31, 52)
+        btnNuevo.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         btnNuevo.Name = "btnNuevo"
-        btnNuevo.Size = New System.Drawing.Size(148, 36)
+        btnNuevo.Size = New System.Drawing.Size(211, 60)
         btnNuevo.TabIndex = 3
         btnNuevo.Text = "&Nuevo"
         btnNuevo.UseVisualStyleBackColor = True
@@ -297,27 +322,30 @@ Partial Class FrmProductos
         ' lblBuscar
         ' 
         lblBuscar.AutoSize = True
-        lblBuscar.Location = New System.Drawing.Point(383, 64)
+        lblBuscar.Location = New System.Drawing.Point(547, 107)
+        lblBuscar.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         lblBuscar.Name = "lblBuscar"
-        lblBuscar.Size = New System.Drawing.Size(45, 15)
+        lblBuscar.Size = New System.Drawing.Size(67, 25)
         lblBuscar.TabIndex = 3
         lblBuscar.Text = "Buscar:"
         ' 
         ' txtBuscar
         ' 
         txtBuscar.Anchor = System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right
-        txtBuscar.Location = New System.Drawing.Point(434, 59)
+        txtBuscar.Location = New System.Drawing.Point(620, 98)
+        txtBuscar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         txtBuscar.Name = "txtBuscar"
         txtBuscar.PlaceholderText = "Código o nombre del producto"
-        txtBuscar.Size = New System.Drawing.Size(420, 23)
+        txtBuscar.Size = New System.Drawing.Size(598, 31)
         txtBuscar.TabIndex = 4
         ' 
         ' btnBuscar
         ' 
         btnBuscar.Anchor = System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right
-        btnBuscar.Location = New System.Drawing.Point(860, 59)
+        btnBuscar.Location = New System.Drawing.Point(1229, 98)
+        btnBuscar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         btnBuscar.Name = "btnBuscar"
-        btnBuscar.Size = New System.Drawing.Size(118, 25)
+        btnBuscar.Size = New System.Drawing.Size(169, 42)
         btnBuscar.TabIndex = 5
         btnBuscar.Text = "&Buscar"
         btnBuscar.UseVisualStyleBackColor = True
@@ -330,28 +358,32 @@ Partial Class FrmProductos
         dgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         dgvProductos.BackgroundColor = Drawing.SystemColors.ControlLight
         dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvProductos.Location = New System.Drawing.Point(383, 108)
+        dgvProductos.Location = New System.Drawing.Point(547, 180)
+        dgvProductos.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         dgvProductos.MultiSelect = False
         dgvProductos.Name = "dgvProductos"
         dgvProductos.ReadOnly = True
         dgvProductos.RowHeadersVisible = False
+        dgvProductos.RowHeadersWidth = 62
         dgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        dgvProductos.Size = New System.Drawing.Size(595, 384)
+        dgvProductos.Size = New System.Drawing.Size(850, 640)
         dgvProductos.TabIndex = 6
         ' 
         ' ssEstado
         ' 
+        ssEstado.ImageScalingSize = New System.Drawing.Size(24, 24)
         ssEstado.Items.AddRange(New System.Windows.Forms.ToolStripItem() {lblEstado, lblTotal})
-        ssEstado.Location = New System.Drawing.Point(0, 508)
+        ssEstado.Location = New System.Drawing.Point(0, 851)
         ssEstado.Name = "ssEstado"
-        ssEstado.Size = New System.Drawing.Size(1000, 22)
+        ssEstado.Padding = New System.Windows.Forms.Padding(1, 0, 20, 0)
+        ssEstado.Size = New System.Drawing.Size(1429, 32)
         ssEstado.TabIndex = 7
         ssEstado.Text = "StatusStrip1"
         ' 
         ' lblEstado
         ' 
         lblEstado.Name = "lblEstado"
-        lblEstado.Size = New System.Drawing.Size(865, 17)
+        lblEstado.Size = New System.Drawing.Size(1228, 25)
         lblEstado.Spring = True
         lblEstado.Text = "ToolStripStatusLabel1"
         lblEstado.TextAlign = Drawing.ContentAlignment.MiddleLeft
@@ -359,7 +391,7 @@ Partial Class FrmProductos
         ' lblTotal
         ' 
         lblTotal.Name = "lblTotal"
-        lblTotal.Size = New System.Drawing.Size(120, 17)
+        lblTotal.Size = New System.Drawing.Size(180, 25)
         lblTotal.Text = "ToolStripStatusLabel2"
         ' 
         ' errValidacion
@@ -367,11 +399,22 @@ Partial Class FrmProductos
         errValidacion.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink
         errValidacion.ContainerControl = Me
         ' 
+        ' chkSoloActivos
+        ' 
+        chkSoloActivos.AutoSize = True
+        chkSoloActivos.Location = New System.Drawing.Point(830, 138)
+        chkSoloActivos.Name = "chkSoloActivos"
+        chkSoloActivos.Size = New System.Drawing.Size(199, 29)
+        chkSoloActivos.TabIndex = 8
+        chkSoloActivos.Text = "Mostrar solo activos"
+        chkSoloActivos.UseVisualStyleBackColor = True
+        ' 
         ' FrmProductos
         ' 
-        AutoScaleDimensions = New System.Drawing.SizeF(7F, 15F)
+        AutoScaleDimensions = New System.Drawing.SizeF(10F, 25F)
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        ClientSize = New System.Drawing.Size(1000, 530)
+        ClientSize = New System.Drawing.Size(1429, 883)
+        Controls.Add(chkSoloActivos)
         Controls.Add(ssEstado)
         Controls.Add(dgvProductos)
         Controls.Add(btnBuscar)
@@ -380,7 +423,8 @@ Partial Class FrmProductos
         Controls.Add(grpAcciones)
         Controls.Add(grpDatos)
         Controls.Add(lblTitulo)
-        MinimumSize = New System.Drawing.Size(1016, 569)
+        Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        MinimumSize = New System.Drawing.Size(1442, 911)
         Name = "FrmProductos"
         StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Text = "Ferreteria Los Robles . Inventario"
@@ -428,4 +472,5 @@ Partial Class FrmProductos
     Friend WithEvents lblTotal As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents errValidacion As System.Windows.Forms.ErrorProvider
     Friend WithEvents ttAyuda As System.Windows.Forms.ToolTip
+    Friend WithEvents chkSoloActivos As System.Windows.Forms.CheckBox
 End Class

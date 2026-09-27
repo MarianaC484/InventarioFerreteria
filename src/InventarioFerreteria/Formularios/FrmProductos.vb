@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Drawing
+Imports System.Windows.Forms
 Imports MySqlConnector
 
 ''' <summary>
@@ -118,7 +119,7 @@ Public Class FrmProductos
         Try
 
             dgvProductos.DataSource =
-                _productos.Listar(filtro)
+    _productos.Listar(filtro, chkSoloActivos.Checked)
 
             FormatearGrid()
 
@@ -826,4 +827,27 @@ Public Class FrmProductos
 
     End Sub
 
+    Private Sub dgvProductos_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles dgvProductos.CellFormatting
+        Dim fila As DataGridViewRow = dgvProductos.Rows(e.RowIndex)
+
+        If dgvProductos.Columns(e.ColumnIndex).Name.ToLower() = "existencia" Then
+            If fila.Cells(e.ColumnIndex).Value IsNot Nothing AndAlso IsNumeric(fila.Cells(e.ColumnIndex).Value) Then
+                Dim cantidad As Integer = Convert.ToInt32(fila.Cells(e.ColumnIndex).Value)
+
+                ' Si la cantidad en inventario es menor que 10, pintamos la fila de MistyRose
+                If cantidad < 10 Then
+                    fila.DefaultCellStyle.BackColor = Color.MistyRose
+                Else
+                    ' Si es igual o mayor, la dejamos blanca normal
+                    fila.DefaultCellStyle.BackColor = Color.White
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub chkSoloActivos_CheckedChanged(sender As Object, e As EventArgs) Handles chkSoloActivos.CheckedChanged
+
+        CargarProductos(txtBuscar.Text)
+
+    End Sub
 End Class

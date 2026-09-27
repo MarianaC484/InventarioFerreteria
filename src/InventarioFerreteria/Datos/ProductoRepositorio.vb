@@ -1,4 +1,5 @@
 ﻿Imports System.Data
+Imports System.Windows.Forms
 Imports MySqlConnector
 
 ''' <summary>
@@ -10,26 +11,61 @@ Public Class ProductoRepositorio
     ' =========================================================
     ' R — READ (lista para el DataGridView) · modo DESCONECTADO
     ' =========================================================
-    Public Function Listar(Optional filtro As String = "") As DataTable
-        Const sql As String =
-            "SELECT p.id_producto, p.codigo, p.nombre, c.nombre AS categoria, " &
-            "       p.unidad, p.precio, p.existencia, p.activo " &
-            "FROM productos p " &
-            "INNER JOIN categorias c ON c.id_categoria = p.id_categoria " &
-            "WHERE p.codigo LIKE @filtro OR p.nombre LIKE @filtro " &
-            "ORDER BY p.nombre;"
+    Public Function Listar(Optional filtro As String = "", Optional soloActivos As Boolean = False) As List(Of Producto)
+        Dim lista As New List(Of Producto)()
+        Dim sql As String = "SELECT p.id_producto, p.codigo, p.nombre, c.nombre AS categoria, " &
+                        "p.unidad, p.precio, p.existencia, p.activo " &
+                        "FROM productos p " &
+                        "INNER JOIN categorias c ON c.id_categoria = p.id_categoria "
+        sql &= "WHERE (p.codigo LIKE @filtro OR p.nombre LIKE @filtro) "
 
-        Dim tabla As New DataTable("productos")
+        If soloActivos Then
+            sql &= "AND p.activo = 1 "
+        End If
 
-        Using cn As MySqlConnection = ObtenerConexion(),
-              da As New MySqlDataAdapter(sql, cn)
+        sql &= "ORDER BY p.nombre;"
 
-            ' % al inicio y al final = "que contenga"
-            da.SelectCommand.Parameters.AddWithValue("@filtro", $"%{filtro.Trim()}%")
-            da.Fill(tabla)        ' Fill abre y cierra la conexión por sí solo
+        Dim tabla As New DataTable()
+
+        Using cn As MySqlConnection = ObtenerConexion()
+
+            Dim da As New MySqlDataAdapter(sql, cn)
+
+            da.SelectCommand.Parameters.AddWithValue("@filtro", "%" & filtro & "%")
+
+            da.Fill(tabla)
+
         End Using
+        ' RECORRIDO CON PROTECCIÓN DE EXCEPCIONES INTEGRAL
+        For Each row As DataRow In tabla.Rows
+            Try
+                ' 1. Evaluar el estado de activo de forma segura
+                Dim esActivo As Boolean = False
+                If Not IsDBNull(row("activo")) Then
+                    Dim strActivo As String = row("activo").ToString().Trim()
+                    If strActivo = "1" OrElse strActivo.ToLower() = "true" Then
+                        esActivo = True
+                    End If
+                End If
 
-        Return tabla
+                ' 2. Mapear el objeto producto
+                Dim prod As New Producto() With {
+                    .IdProducto = If(IsDBNull(row("id_producto")), 0, Convert.ToInt32(row("id_producto"))),
+                    .Codigo = If(IsDBNull(row("codigo")), "", row("codigo").ToString()),
+                    .Nombre = If(IsDBNull(row("nombre")), "", row("nombre").ToString()),
+                    .Unidad = If(IsDBNull(row("unidad")), "", row("unidad").ToString()),
+                    .Precio = If(IsDBNull(row("precio")), 0D, Convert.ToDecimal(row("precio"))),
+                    .Existencia = If(IsDBNull(row("existencia")), 0, Convert.ToInt32(row("existencia"))),
+                    .Activo = esActivo
+                }
+                lista.Add(prod)
+            Catch ex As Exception
+                ' Si alguna fila da un error de conversión, se salta silenciosamente para no bloquear la pantalla
+                Continue For
+            End Try
+        Next
+
+        Return lista
     End Function
 
     ' =========================================================
