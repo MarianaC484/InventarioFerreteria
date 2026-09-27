@@ -2,4 +2,7 @@
   <Folder Name="/src/">
     <Project Path="src/InventarioFerreteria/InventarioFerreteria.vbproj" />
   </Folder>
+  <Folder Name="/src/Database/">
+    <File Path="04_proveedores.sql" />
+  </Folder>
 </Solution>
